@@ -1,0 +1,4 @@
+# Private notes stay on Terry's computer, not on GitHub or the live site
+notes/
+.DS_Store
+.qodo/

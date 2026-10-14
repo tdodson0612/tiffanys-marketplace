@@ -1,0 +1,3 @@
+name,category,description,photo,photo_alt,facebook,instagram,etsy,website,booth,featured
+# One row per maker who agreed to be listed. category must match a filter button (see js/config.js). featured = yes to show on the home page.
+[ASK TIFFANY: vendor name],Other,[ASK TIFFANY: one sentence about what this maker makes],,,,,,,,yes

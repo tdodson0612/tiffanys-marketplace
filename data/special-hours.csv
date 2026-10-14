@@ -1,0 +1,3 @@
+date,open,close,note
+# Holiday or special hours go here. Leave open and close blank to mark a day CLOSED. Rows starting with # are ignored.
+# Format: 2026-12-24,11:00,15:00,Christmas Eve
