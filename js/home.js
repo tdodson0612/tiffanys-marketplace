@@ -130,7 +130,7 @@
   /* ---------- Food trucks this week ---------- */
   TM.getSettings().then(function (s) {
     var el = document.getElementById("food-trucks-line");
-    if (el && s.food_trucks_this_week) el.textContent = "This week: " + s.food_trucks_this_week;
+    if (el && s.food_trucks_this_week) { el.textContent = "Also this week: " + s.food_trucks_this_week; el.hidden = false; }
   });
 
   /* ---------- Featured makers ---------- */

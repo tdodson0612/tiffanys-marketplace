@@ -17,7 +17,7 @@ js/home.js          Home page features
 js/vendors.js       Directory filters and search
 data/*.csv          Editable info: hours, special hours, events,
                     vendors, settings (announcement + food trucks)
-images/             favicon.svg, apple-touch-icon.png, og-image.png
+images/             logo.png, logo-mark.png, favicon.png, apple-touch-icon.png, og-image.png
 robots.txt, sitemap.xml
 notes/              PRIVATE (git-ignored): master prompt, questions email,
                     agreement draft, Tiffany's how-to guide

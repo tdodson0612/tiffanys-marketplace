@@ -4,17 +4,23 @@
    Body text is 18px minimum; tap targets are at least 44-48px.
    ========================================================= */
 
+/* Brand colors come from Tiffany's logo: bright cyan (#95fdfc) and black ink. */
 :root {
-  --bg: #fbf7f0;
+  --bg: #f5fbfb;
   --surface: #ffffff;
-  --surface-2: #f2eadd;
-  --text: #1d1b18;
-  --muted: #4a453e;
-  --border: #cfc3b1;
-  --brand: #1f4d3a;        /* forest green */
+  --surface-2: #e4f4f3;
+  --text: #121b1b;
+  --muted: #3f4f4e;
+  --border: #b9d2d0;
+  --brand: #142322;        /* ink: links, primary buttons */
   --brand-ink: #ffffff;
-  --accent: #9a3f1f;       /* terracotta */
-  --accent-ink: #ffffff;
+  --accent: #0b6664;       /* text-safe teal */
+  --cyan: #95fdfc;         /* exact logo background */
+  --cyan-ink: #0f1a1a;
+  --ink: #142322;          /* same in both themes, for buttons on cyan */
+  --on-ink: #ffffff;
+  --footer-bg: #142322;
+  --footer-ink: #eef7f6;
   --open-bg: #1d6b3a;
   --open-ink: #ffffff;
   --closed-bg: #8a2a1c;
@@ -31,16 +37,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #151412;
-    --surface: #1f1d1a;
-    --surface-2: #2a2723;
-    --text: #f4efe7;
-    --muted: #d2c9bc;
-    --border: #4a443b;
-    --brand: #8fd0ae;
-    --brand-ink: #0d1f16;
-    --accent: #f2a580;
-    --accent-ink: #1c0d06;
+    --bg: #0f1716;
+    --surface: #172120;
+    --surface-2: #1f2c2b;
+    --text: #eef6f5;
+    --muted: #b8cac8;
+    --border: #35504d;
+    --brand: #95fdfc;
+    --brand-ink: #0f1a1a;
+    --accent: #7fe6e3;
+    --footer-bg: #0a1110;
     --open-bg: #8fd0ae;
     --open-ink: #0d1f16;
     --closed-bg: #f5a3a3;
@@ -93,14 +99,15 @@ p { margin: 0 0 1rem; }
   border: 2px solid transparent; cursor: pointer;
 }
 .btn-primary { background: var(--brand); color: var(--brand-ink); }
-.btn-accent { background: var(--accent); color: var(--accent-ink); }
+.btn-accent { background: var(--cyan); color: var(--cyan-ink); border-color: var(--ink); }
+.btn-ink { background: var(--ink); color: var(--on-ink); }
 .btn-outline { background: transparent; color: var(--text); border-color: currentColor; }
 .btn:hover { filter: brightness(1.08); }
 .btn-small { min-height: 44px; padding: 0.45rem 1rem; font-size: 1.0625rem; }
 
 /* ---------- Announcement bar ---------- */
 .announcement {
-  background: var(--accent); color: var(--accent-ink);
+  background: var(--cyan); color: var(--cyan-ink); border-bottom: 2px solid var(--ink);
   text-align: center; padding: 0.6rem 1rem; font-weight: 700;
 }
 .announcement[hidden] { display: none; }
@@ -116,7 +123,7 @@ p { margin: 0 0 1rem; }
   text-decoration: none; color: var(--text);
   font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; line-height: 1.15;
 }
-.brand img { width: 2.5rem; height: 2.5rem; flex: none; }
+.brand img { width: 2.75rem; height: 2.75rem; flex: none; border-radius: 10px; border: 1px solid var(--border); }
 .btn-directions { flex: none; padding: 0.55rem 1.1rem; }
 
 .site-nav { background: var(--surface-2); border-bottom: 1px solid var(--border); }
@@ -128,19 +135,21 @@ p { margin: 0 0 1rem; }
 .site-nav a[aria-current="page"] { text-decoration-thickness: 3px; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; background: var(--brand); color: var(--brand-ink); overflow: hidden; }
+.hero { position: relative; background: var(--cyan); color: var(--cyan-ink); overflow: hidden; }
+.hero-grid { display: grid; gap: 1.5rem; align-items: center; }
+.hero-logo { width: 100%; max-width: 15rem; margin: 0 auto; order: -1; }
 .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero.has-photo { color: #fff; }
 .hero.has-photo::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.65));
 }
-.hero-content { position: relative; z-index: 1; padding: 3rem 1rem 3.5rem; }
+.hero-content { position: relative; z-index: 1; padding-block: 2rem 3rem; }
 .eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 800; font-size: 1rem; margin-bottom: 0.5rem; }
 .hero .lead { font-size: 1.25rem; max-width: 40rem; }
 .status-card {
   display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem;
-  background: var(--surface); color: var(--text);
+  background: #ffffff; color: #121b1b; border: 2px solid var(--ink);
   padding: 0.75rem 1rem; border-radius: var(--radius); margin: 0.5rem 0 1.5rem;
 }
 .badge { display: inline-block; padding: 0.15rem 0.75rem; border-radius: 999px; font-weight: 800; }
@@ -148,9 +157,9 @@ p { margin: 0 0 1rem; }
 .badge-closed { background: var(--closed-bg); color: var(--closed-ink); }
 .badge-unknown { background: var(--surface-2); color: var(--text); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-.hero .btn-outline { color: inherit; }
+.hero .btn-outline { color: var(--cyan-ink); }
 
-.page-hero { background: var(--brand); color: var(--brand-ink); }
+.page-hero { background: var(--cyan); color: var(--cyan-ink); }
 .page-hero .container { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 
 /* ---------- Sections ---------- */
@@ -234,7 +243,7 @@ input:focus, textarea:focus, select:focus { border-color: var(--focus); }
 .about { display: grid; gap: 2rem; align-items: start; }
 .quote {
   margin: 0; padding: 1.25rem 1.5rem; background: var(--surface);
-  border-left: 6px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0;
+  border-left: 6px solid var(--cyan); border-radius: 0 var(--radius) var(--radius) 0;
 }
 .quote p { font: italic 1.4rem/1.45 var(--font-head); margin-bottom: 0.6rem; }
 .quote footer { font-weight: 700; color: var(--muted); }
@@ -262,7 +271,7 @@ input:focus, textarea:focus, select:focus { border-color: var(--focus); }
 .faq details > div p:last-child { margin-bottom: 0; }
 
 /* ---------- Footer ---------- */
-.site-footer { background: var(--brand); color: var(--brand-ink); padding: 2.75rem 0 1.5rem; }
+.site-footer { background: var(--footer-bg); color: var(--footer-ink); padding: 2.75rem 0 1.5rem; }
 .site-footer a { color: inherit; }
 .site-footer h2 { font-size: 1.35rem; }
 .footer-grid { display: grid; gap: 1.75rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
@@ -280,7 +289,9 @@ input:focus, textarea:focus, select:focus { border-color: var(--focus); }
 /* ---------- Larger screens ---------- */
 @media (min-width: 48rem) {
   .container { padding: 0 1.5rem; }
-  .hero-content { padding: 5rem 1.5rem 5.5rem; }
+  .hero-content { padding-block: 3.5rem 4rem; }
+  .hero-grid { grid-template-columns: 1.3fr 1fr; }
+  .hero-logo { max-width: 26rem; order: 0; }
   .section { padding: 4.5rem 0; }
   .about, .visit-grid { grid-template-columns: 1fr 1fr; }
   .map-frame { height: 100%; min-height: 420px; }
@@ -289,3 +300,9 @@ input:focus, textarea:focus, select:focus { border-color: var(--focus); }
 @media (min-width: 60rem) {
   .tiles { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Holiday highlight card in Events */
+.feature-event { background: var(--surface); border: 2px solid var(--brand); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1.5rem; }
+.feature-event h3 { margin-bottom: 0.4rem; }
+.feature-event ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+.tag { display: inline-block; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin: 0 0 0.35rem; }

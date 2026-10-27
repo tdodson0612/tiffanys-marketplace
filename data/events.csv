@@ -1,3 +1,4 @@
 date,start,end,title,description,link
 # One row per event. Date as YYYY-MM-DD. Times like 11:00 or 17:30 (24-hour). Rows starting with # are ignored.
 # Format: 2026-12-05,17:00,20:00,Event name,One or two sentences about it.,https://facebook.com/events/...
+2026-11-28,10:00,19:00,Small Business Saturday,"Shop small and shop local! Find handmade holiday gifts from nearly 80 Rogue Valley makers.",

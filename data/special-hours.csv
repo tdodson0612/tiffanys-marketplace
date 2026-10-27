@@ -1,3 +1,10 @@
 date,open,close,note
-# Holiday or special hours go here. Leave open and close blank to mark a day CLOSED. Rows starting with # are ignored.
+# Holiday or special hours. Leave open and close blank to mark a day CLOSED. Rows starting with # are ignored.
 # Format: 2026-12-24,11:00,15:00,Christmas Eve
+2026-11-25,,,Thanksgiving week: family time
+2026-11-26,,,Thanksgiving week: family time
+2026-12-21,10:00,19:00,Open for last-minute shoppers
+2026-12-22,10:00,19:00,Open for last-minute shoppers
+2026-12-23,,,Christmas
+2026-12-24,,,Christmas
+2026-12-25,,,Christmas
