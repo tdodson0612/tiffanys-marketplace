@@ -259,7 +259,7 @@
         <p class="section-intro">Tiffany's Marketplace gives Rogue Valley makers a year-round home base. Our nearly 80 spaces are full, so we keep a waiting list. Fill out the form below to join it.</p>
 
         <!-- TERRY: create a free Formspree form (formspree.io) and replace YOUR-FORM-ID below. -->
-        <form class="form-grid" action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+        <form id="vendor-form" class="form-grid" action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
           <input type="hidden" name="_subject" value="New vendor application - Tiffany's Marketplace website">
           <div class="hp" aria-hidden="true">
             <label for="company">Leave this empty</label>
@@ -294,6 +294,7 @@
           <div>
             <button class="btn btn-primary" type="submit">Join the waiting list</button>
           </div>
+          <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
     </section>

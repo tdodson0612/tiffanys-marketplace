@@ -45,6 +45,7 @@ window.SITE_CONFIG = {
   // category isn't in this list shows up under "Other".
   categories: [
     "Wood", "Candles", "Beauty & Soap", "Rocks & Gems", "Honey", "Jewelry",
-    "Home Decor", "Metal", "Clothing", "Art", "Up-cycled & Vintage", "Other"
+    "Home Decor", "Metal", "Clothing", "Hats", "Art", "Up-cycled & Vintage",
+    "Baked Goods & Treats", "Other"
   ]
 };

@@ -145,4 +145,33 @@
     grid.hidden = false;
     if (empty) empty.hidden = true;
   });
+
+  /* ---------- Vendor waiting-list form ----------
+     Sends in the background so the visitor stays on the page.
+     Until Terry adds a real Formspree form ID, it shows a friendly
+     "call us" message instead of an error page. */
+  var form = document.getElementById("vendor-form");
+  var statusEl = document.getElementById("form-status");
+  function showStatus(msg) { statusEl.textContent = msg; statusEl.hidden = false; }
+  if (form && statusEl) {
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (form.action.indexOf("YOUR-FORM-ID") > -1) {
+        showStatus("Online applications are almost ready. For now, please call us at (541) 821-8882 to join the waiting list.");
+        return;
+      }
+      var btn = form.querySelector("button[type=submit]");
+      btn.disabled = true;
+      fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          form.reset();
+          showStatus("Thank you! You're on the waiting list. We'll be in touch when a space opens up.");
+        })
+        .catch(function () {
+          showStatus("Sorry, that didn't go through. Please try again, or call us at (541) 821-8882.");
+        })
+        .then(function () { btn.disabled = false; });
+    });
+  }
 })();
