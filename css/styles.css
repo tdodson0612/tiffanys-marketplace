@@ -306,3 +306,10 @@ input:focus, textarea:focus, select:focus { border-color: var(--focus); }
 .feature-event h3 { margin-bottom: 0.4rem; }
 .feature-event ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
 .tag { display: inline-block; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin: 0 0 0.35rem; }
+
+/* Reviews (real Facebook recommendations) */
+.reviews { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.review { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.review blockquote { margin: 0; }
+.review blockquote p { margin: 0; font: italic 1.3rem/1.45 var(--font-head); }
+.review figcaption { font-weight: 700; color: var(--muted); }

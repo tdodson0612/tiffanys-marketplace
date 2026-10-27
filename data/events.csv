@@ -1,4 +1,11 @@
 date,start,end,title,description,link
-# One row per event. Date as YYYY-MM-DD. Times like 11:00 or 17:30 (24-hour). Rows starting with # are ignored.
+# One row per event. Date as YYYY-MM-DD. Times like 11:00 or 17:30 (24-hour). Rows starting with # are ignored. Past events hide themselves.
 # Format: 2026-12-05,17:00,20:00,Event name,One or two sentences about it.,https://facebook.com/events/...
+2026-10-30,17:00,19:00,Live music: Taurus Moon,Friday night live music.,
+2026-11-06,17:00,19:00,Live music: Quartz Creek,Friday night live music.,
+2026-11-07,10:00,,Tintype Photography Pop Up with J. Burns,A tintype photography pop-up at the market.,
+2026-11-13,17:00,19:00,Live music: Ambrose & Annieville,Friday night live music.,
+2026-11-20,16:30,,Free Wine Tasting with Vanessa,A free wine tasting in our wine bar.,
+2026-11-20,17:00,19:00,Live music: Stillwater Road,Friday night live music.,
 2026-11-28,10:00,19:00,Small Business Saturday,"Shop small and shop local! Find handmade holiday gifts from nearly 80 Rogue Valley makers.",
+2026-12-11,17:00,19:00,Bringing the Blues: Back Door Blues Band,The Back Door Blues Band brings the blues to Tiffany's Marketplace.,

@@ -101,7 +101,7 @@
         var ta = TM.toMinutes(a.start), tb = TM.toMinutes(b.start);
         return a.date === b.date ? (ta == null ? -1 : ta) - (tb == null ? -1 : tb) : a.date < b.date ? -1 : 1;
       })
-      .slice(0, 6);
+      .slice(0, 8);
     if (!upcoming.length) return; // empty message stays visible
 
     list.innerHTML = upcoming.map(function (ev) {
@@ -139,7 +139,7 @@
     if (!rows || !grid) return;
     var vendors = TM.cleanVendors(rows);
     var featured = vendors.filter(function (v) { return TM.isYes(v.featured); });
-    var show = (featured.length ? featured : vendors).slice(0, 6);
+    var show = (featured.length ? featured : vendors).slice(0, 8);
     if (!show.length) return;
     grid.innerHTML = show.map(TM.vendorCard).join("");
     grid.hidden = false;

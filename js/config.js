@@ -39,7 +39,7 @@ window.SITE_CONFIG = {
   timeZone: "America/Los_Angeles",
   businessName: "Tiffany's Marketplace",
   address: "211 N. Front St., Central Point, OR 97502",
-  facebookUrl: "https://www.facebook.com/p/Tiffanys-Marketplace-61573293705809/",
+  facebookUrl: "https://www.facebook.com/TiffanysMarketplace2026",
 
   // Vendor directory filter buttons (in this order). A vendor whose
   // category isn't in this list shows up under "Other".
