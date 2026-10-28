@@ -23,6 +23,8 @@
   <meta property="og:image:alt" content="Tiffany's Marketplace logo: a rabbit in a top hat. Artisan market and makerspace, 211 N. Front St., Central Point, Oregon.">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- Swiper carousels (pinned version). Our styles load after, so they win. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.3.0/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Google search: business details -->
@@ -187,6 +189,21 @@
             <p>A space for painting, crafting, sewing and making, with classes, craft parties, and day use or memberships for people to create and connect.</p>
           </li>
         </ul>
+
+        <!-- Photo gallery: fills from data/photos.csv and stays hidden until there are photos. -->
+        <div id="gallery" class="gallery" hidden>
+          <h3>A look around the market</h3>
+          <div class="carousel-wrap">
+            <div class="swiper carousel photos-carousel" aria-label="Photos of Tiffany's Marketplace">
+              <div class="swiper-wrapper" id="photos-wrapper"></div>
+            </div>
+            <div class="carousel-controls">
+            <button type="button" class="carousel-btn carousel-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="carousel-pagination"></div>
+            <button type="button" class="carousel-btn carousel-next" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -224,15 +241,29 @@
       <div class="container">
         <h2 id="reviews-title">What people are saying</h2>
         <p class="section-intro">Real reviews from our Facebook page.</p>
-        <div class="reviews">
-          <figure class="review">
-            <blockquote><p>&ldquo;Tiffany's has the cutest handmade goodies from all local vendors!&rdquo;</p></blockquote>
-            <figcaption>Feral Forager, on Facebook</figcaption>
-          </figure>
-          <figure class="review">
-            <blockquote><p>&ldquo;Great place to find local hand made items and gifts for anyone!&rdquo;</p></blockquote>
-            <figcaption>Alicia Haskins, on Facebook</figcaption>
-          </figure>
+        <!-- To add a review: copy one swiper-slide block. Real reviews only, word for word. -->
+        <div class="carousel-wrap">
+          <div class="swiper carousel reviews-carousel" aria-label="Reviews">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <figure class="review">
+                  <blockquote><p>&ldquo;Tiffany's has the cutest handmade goodies from all local vendors!&rdquo;</p></blockquote>
+                  <figcaption>Feral Forager, on Facebook</figcaption>
+                </figure>
+              </div>
+              <div class="swiper-slide">
+                <figure class="review">
+                  <blockquote><p>&ldquo;Great place to find local hand made items and gifts for anyone!&rdquo;</p></blockquote>
+                  <figcaption>Alicia Haskins, on Facebook</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button type="button" class="carousel-btn carousel-prev" aria-label="Previous review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="carousel-pagination"></div>
+            <button type="button" class="carousel-btn carousel-next" aria-label="Next review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
         </div>
         <p class="section-cta"><a class="btn btn-outline" href="https://www.facebook.com/TiffanysMarketplace2026">Read more on Facebook</a></p>
       </div>
@@ -420,6 +451,9 @@
 
   <script src="js/config.js" defer></script>
   <script src="js/site.js" defer></script>
+  <script src="js/reveal.js" defer></script>
   <script src="js/home.js" defer></script>
+  <!-- Loads last so it never holds up the rest of the page -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@14.3.0/swiper-bundle.min.js" defer></script>
 </body>
 </html>

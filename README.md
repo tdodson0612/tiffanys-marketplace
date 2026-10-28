@@ -112,3 +112,12 @@ grep -rn --exclude-dir=notes --exclude-dir=.git --exclude=README.md \
 When the real domain is connected, the canonical links, og:image, sitemap
 and robots.txt already point at https://tiffanysmarketplace.com. If she ends
 up with a different domain, search and replace `tiffanysmarketplace.com`.
+
+
+## Motion and carousels
+
+- **Hero:** the headline, text, buttons and logo animate in on load (CSS keyframes in `css/styles.css`, "MOTION" section).
+- **Scroll reveals:** `js/reveal.js` fades and slides sections in as they scroll into view. To animate something new, add a line to `GROUPS` at the top of that file.
+- **Carousels:** reviews and the photo gallery use Swiper 14.3.0 from jsDelivr (pinned version). Add photos in `data/photos.csv`; the gallery stays hidden until there's at least one photo. Add reviews by copying a `swiper-slide` block in `index.html` (real reviews only, word for word).
+- **Hover effects:** cards lift, photos zoom, buttons change color. Only on devices with a mouse or trackpad.
+- **Reduce motion:** visitors with "reduce motion" turned on (phone or computer setting) see everything instantly with no animation. Without JavaScript, everything shows normally too.

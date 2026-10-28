@@ -50,6 +50,7 @@
       return [v.name, v.category, v.description].join(" ").toLowerCase().indexOf(q) > -1;
     });
     grid.innerHTML = shown.map(TM.vendorCard).join("");
+    if (TM.reveal) TM.reveal();
     var word = shown.length === 1 ? "maker" : "makers";
     countEl.textContent = shown.length
       ? "Showing " + shown.length + " " + word + (current !== "All" ? " in " + current : "") + (q ? ' matching "' + searchEl.value.trim() + '"' : "") + "."

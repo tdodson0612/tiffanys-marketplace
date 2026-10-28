@@ -21,6 +21,8 @@
   --on-ink: #ffffff;
   --footer-bg: #142322;
   --footer-ink: #eef7f6;
+  --brand-hover: #0b6664;   /* primary button on hover */
+  --shadow-lift: 0 14px 30px rgba(15, 40, 40, 0.16);
   --open-bg: #1d6b3a;
   --open-ink: #ffffff;
   --closed-bg: #8a2a1c;
@@ -47,6 +49,8 @@
     --brand-ink: #0f1a1a;
     --accent: #7fe6e3;
     --footer-bg: #0a1110;
+    --brand-hover: #d4fffe;
+    --shadow-lift: 0 14px 30px rgba(0, 0, 0, 0.45);
     --open-bg: #8fd0ae;
     --open-ink: #0d1f16;
     --closed-bg: #f5a3a3;
@@ -315,3 +319,127 @@ input:focus, textarea:focus, select:focus { border-color: var(--focus); }
 .review figcaption { font-weight: 700; color: var(--muted); }
 
 .form-status { margin: 0; padding: 0.9rem 1.1rem; border-radius: 10px; background: var(--surface-2); border: 2px solid var(--brand); font-weight: 700; }
+
+
+/* =========================================================
+   MOTION
+   Only opacity and transform are animated (cheap on phones).
+   Everything here is off for visitors with "reduce motion" on.
+   ========================================================= */
+
+/* ---------- 1. Hero: layers animate in on page load ---------- */
+@keyframes tm-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes tm-from-right { from { opacity: 0; transform: translateX(40px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes tm-pop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero .eyebrow,
+  .hero h1,
+  .hero .lead,
+  .hero .status-card,
+  .hero .hero-actions,
+  .page-hero h1,
+  .page-hero .lead,
+  .not-found > * {
+    animation: tm-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero .eyebrow      { animation-delay: 0.05s; }
+  .hero h1            { animation-delay: 0.18s; }
+  .hero .lead         { animation-delay: 0.34s; }
+  .hero .status-card  { animation-delay: 0.5s; }
+  .hero .hero-actions { animation-delay: 0.64s; }
+  .hero .hero-logo    { animation: tm-pop 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s both; }
+  .page-hero .lead    { animation-delay: 0.15s; }
+  .not-found > :nth-child(2) { animation-delay: 0.15s; }
+  .not-found > :nth-child(3) { animation-delay: 0.3s; }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
+  .hero .hero-logo { animation-name: tm-from-right; }
+}
+
+/* ---------- 2. Scroll reveals (js/reveal.js) ----------
+   Hidden only when the script has turned motion on (html.motion),
+   so the page always works without JavaScript. */
+.motion [data-reveal] {
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--rd, 0s);
+}
+.motion [data-reveal="up"]    { transform: translateY(32px); }
+.motion [data-reveal="left"]  { transform: translateX(-48px); }
+.motion [data-reveal="right"] { transform: translateX(48px); }
+.motion [data-reveal].is-in   { opacity: 1; transform: none; }
+/* Phones: everything rises from below (no sideways slides, no sideways scroll) */
+@media (max-width: 47.99rem) {
+  .motion [data-reveal="left"],
+  .motion [data-reveal="right"] { transform: translateY(24px); }
+  .motion [data-reveal="up"]    { transform: translateY(24px); }
+}
+
+/* ---------- 3. Hover effects (mouse and trackpad only) ---------- */
+@media (hover: hover) {
+  .btn { transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+  .btn:hover { filter: none; }
+  .btn-primary:hover { background: var(--brand-hover); color: #ffffff; }
+  .btn-ink:hover { background: #000000; }
+  .btn-accent:hover { background: var(--ink); color: var(--cyan); }
+  .btn-outline:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .hero .btn-outline:hover { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+  .filter-btn:hover { border-color: var(--brand); }
+
+  .tile, .vendor-card, .event, .review, .faq details, .photo-slide figure {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .tile:hover, .vendor-card:hover, .event:hover, .review:hover, .faq details:hover {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-lift);
+  }
+  .vendor-photo, .photo-slide img { transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .tile-icon { display: inline-block; transition: transform 0.3s ease; }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18); }
+  .btn:active { transform: translateY(0); box-shadow: none; }
+  .tile:hover, .vendor-card:hover, .event:hover, .review:hover { transform: translateY(-6px); }
+  .vendor-card:hover .vendor-photo, .photo-slide figure:hover img { transform: scale(1.07); }
+  .tile:hover .tile-icon { transform: scale(1.2) rotate(-6deg); }
+}
+.vendor-card { isolation: isolate; } /* keeps the zoomed photo inside the rounded card */
+
+/* ---------- 4. Carousels (Swiper) ---------- */
+.carousel-wrap { margin-top: 1.5rem; }
+.carousel .swiper-slide { height: auto; display: flex; }
+.carousel .swiper-slide > * { flex: 1; }
+.carousel-controls {
+  display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.25rem;
+}
+.carousel-btn {
+  width: 48px; height: 48px; flex: none; display: grid; place-items: center;
+  border-radius: 50%; border: 2px solid var(--brand); background: var(--surface); color: var(--text);
+  cursor: pointer;
+}
+.carousel-btn svg { width: 20px; height: 20px; }
+.carousel-btn.swiper-button-disabled { opacity: 0.35; cursor: default; }
+.carousel-btn.swiper-button-lock, .carousel-pagination.swiper-pagination-lock { display: none; }
+@media (hover: hover) {
+  .carousel-btn { transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+  .carousel-btn:not(.swiper-button-disabled):hover { background: var(--brand); color: var(--brand-ink); }
+}
+.carousel-pagination { position: static !important; width: auto !important; display: flex; gap: 0.15rem; }
+.carousel-pagination .swiper-pagination-bullet {
+  width: 12px; height: 12px; margin: 0 4px !important; opacity: 1;
+  background: var(--border);
+}
+.carousel-pagination .swiper-pagination-bullet-active { background: var(--brand); }
+/* Before Swiper loads (or if it can't), show the slides as a simple grid */
+.carousel:not(.swiper-initialized) .swiper-wrapper {
+  display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+.carousel:not(.swiper-initialized) + .carousel-controls { display: none; }
+
+/* Photo gallery (fills from data/photos.csv; hidden while empty) */
+.gallery { margin-top: 2.5rem; }
+.gallery h3 { font-size: 1.5rem; }
+.photo-slide figure { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--surface-2); isolation: isolate; }
+.photo-slide img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.photo-slide figcaption { padding: 0.6rem 0.9rem; font-weight: 600; background: var(--surface); }

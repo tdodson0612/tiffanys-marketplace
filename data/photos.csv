@@ -1,0 +1,4 @@
+file,alt,caption
+# One row per photo for the "A look around the market" carousel. The section stays hidden until there's at least one row.
+# Save photos in images/photos/ (about 1200px wide, under 200 KB). alt = what the photo shows, for people who can't see it.
+# Format: images/photos/patio.jpg,Covered patio with shaded tables and string lights,Our covered patio

@@ -23,7 +23,8 @@ window.SITE_CONFIG = {
     specialHours: "data/special-hours.csv",
     events: "data/events.csv",
     vendors: "data/vendors.csv",
-    settings: "data/settings.csv"
+    settings: "data/settings.csv",
+    photos: "data/photos.csv"
   },
 
   // Option B: paste the "Publish to web" CSV link for each tab here.
@@ -33,7 +34,8 @@ window.SITE_CONFIG = {
     specialHours: "",
     events: "",
     vendors: "",
-    settings: ""
+    settings: "",
+    photos: ""
   },
 
   timeZone: "America/Los_Angeles",

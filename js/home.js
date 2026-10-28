@@ -125,6 +125,7 @@
     }).join("");
     list.hidden = false;
     if (empty) empty.hidden = true;
+    if (TM.reveal) TM.reveal();
   });
 
   /* ---------- Food trucks this week ---------- */
@@ -144,6 +145,7 @@
     grid.innerHTML = show.map(TM.vendorCard).join("");
     grid.hidden = false;
     if (empty) empty.hidden = true;
+    if (TM.reveal) TM.reveal();
   });
 
   /* ---------- Vendor waiting-list form ----------
@@ -174,4 +176,61 @@
         .then(function () { btn.disabled = false; });
     });
   }
+
+  /* ---------- Carousels (Swiper) ----------
+     Swiper loads last, so we wait for it. If it never loads, the slides
+     simply show as a grid. */
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function whenSwiper(cb) {
+    if (window.Swiper) return cb();
+    window.addEventListener("load", function () { if (window.Swiper) cb(); });
+  }
+  function makeCarousel(el, options) {
+    var wrap = el.closest(".carousel-wrap");
+    var controls = wrap && wrap.querySelector(".carousel-controls");
+    var base = {
+      speed: reduceMotion ? 0 : 550,
+      spaceBetween: 16,
+      grabCursor: true,
+      watchOverflow: true,
+      keyboard: { enabled: true, onlyInViewport: true },
+      a11y: { enabled: true },
+      navigation: controls ? {
+        prevEl: controls.querySelector(".carousel-prev"),
+        nextEl: controls.querySelector(".carousel-next"),
+        addIcons: false
+      } : false,
+      pagination: controls ? { el: controls.querySelector(".carousel-pagination"), clickable: true } : false
+    };
+    return new window.Swiper(el, Object.assign(base, options));
+  }
+
+  // Reviews: 1 at a time on phones (with a peek of the next), 2-3 on bigger screens
+  whenSwiper(function () {
+    var el = document.querySelector(".reviews-carousel");
+    if (!el) return;
+    var n = el.querySelectorAll(".swiper-slide").length; // never show empty columns
+    makeCarousel(el, { slidesPerView: n > 1 ? 1.08 : 1, breakpoints: { 720: { slidesPerView: Math.min(2, n) }, 1100: { slidesPerView: Math.min(3, n) } } });
+  });
+
+  // Photo gallery from data/photos.csv
+  TM.load("photos").then(function (rows) {
+    var gallery = document.getElementById("gallery");
+    var wrapper = document.getElementById("photos-wrapper");
+    var photos = (rows || []).filter(function (r) { return TM.safeUrl(r.file, true); });
+    if (!gallery || !wrapper || !photos.length) return;
+    wrapper.innerHTML = photos.map(function (r) {
+      return '<div class="swiper-slide photo-slide"><figure>' +
+        '<img src="' + e(TM.safeUrl(r.file, true)) + '" alt="' + e(r.alt || "") + '" loading="lazy" decoding="async" width="1200" height="900">' +
+        (r.caption ? "<figcaption>" + e(r.caption) + "</figcaption>" : "") +
+        "</figure></div>";
+    }).join("");
+    gallery.hidden = false;
+    if (TM.reveal) TM.reveal();
+    whenSwiper(function () {
+      makeCarousel(gallery.querySelector(".photos-carousel"), {
+        slidesPerView: 1.12, breakpoints: { 720: { slidesPerView: 2.15 }, 1100: { slidesPerView: 3 } }
+      });
+    });
+  });
 })();
