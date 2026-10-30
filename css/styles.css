@@ -4,25 +4,26 @@
    Body text is 18px minimum; tap targets are at least 44-48px.
    ========================================================= */
 
-/* Brand colors come from Tiffany's logo: bright cyan (#95fdfc) and black ink. */
+/* Brand colors come from Tiffany's logo (her pick, Oct 29):
+   soft aqua (#adf5f1) and dark brown ink (#4c3225), for a vintage feel. */
 :root {
-  --bg: #f5fbfb;
+  --bg: #f7fbfa;
   --surface: #ffffff;
-  --surface-2: #e4f4f3;
-  --text: #121b1b;
-  --muted: #3f4f4e;
-  --border: #b9d2d0;
-  --brand: #142322;        /* ink: links, primary buttons */
+  --surface-2: #e6f4f1;
+  --text: #2a1b12;
+  --muted: #5a4638;
+  --border: #c7d8d3;
+  --brand: #4c3225;        /* brown ink: links, primary buttons */
   --brand-ink: #ffffff;
-  --accent: #0b6664;       /* text-safe teal */
-  --cyan: #95fdfc;         /* exact logo background */
-  --cyan-ink: #0f1a1a;
-  --ink: #142322;          /* same in both themes, for buttons on cyan */
+  --accent: #7a4a2e;       /* text-safe warm brown for small labels */
+  --cyan: #adf5f1;         /* exact logo background (soft aqua) */
+  --cyan-ink: #3a2519;
+  --ink: #4c3225;          /* same in both themes, for buttons on aqua */
   --on-ink: #ffffff;
-  --footer-bg: #142322;
-  --footer-ink: #eef7f6;
-  --brand-hover: #0b6664;   /* primary button on hover */
-  --shadow-lift: 0 14px 30px rgba(15, 40, 40, 0.16);
+  --footer-bg: #3a2519;
+  --footer-ink: #f3efe9;
+  --brand-hover: #6e4a36;  /* primary button on hover */
+  --shadow-lift: 0 14px 30px rgba(58, 37, 25, 0.18);
   --open-bg: #1d6b3a;
   --open-ink: #ffffff;
   --closed-bg: #8a2a1c;
@@ -39,18 +40,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f1716;
-    --surface: #172120;
-    --surface-2: #1f2c2b;
-    --text: #eef6f5;
-    --muted: #b8cac8;
-    --border: #35504d;
-    --brand: #95fdfc;
-    --brand-ink: #0f1a1a;
-    --accent: #7fe6e3;
-    --footer-bg: #0a1110;
-    --brand-hover: #d4fffe;
-    --shadow-lift: 0 14px 30px rgba(0, 0, 0, 0.45);
+    --bg: #17120e;
+    --surface: #211a15;
+    --surface-2: #2b231c;
+    --text: #f3ece5;
+    --muted: #cdbfb3;
+    --border: #4d3f34;
+    --brand: #adf5f1;
+    --brand-ink: #2a1b12;
+    --accent: #e3c2a6;
+    --footer-bg: #100c09;
+    --brand-hover: #d6fbf8;
+    --shadow-lift: 0 14px 30px rgba(0, 0, 0, 0.5);
     --open-bg: #8fd0ae;
     --open-ink: #0d1f16;
     --closed-bg: #f5a3a3;
@@ -153,7 +154,7 @@ p { margin: 0 0 1rem; }
 .hero .lead { font-size: 1.25rem; max-width: 40rem; }
 .status-card {
   display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem;
-  background: #ffffff; color: #121b1b; border: 2px solid var(--ink);
+  background: #ffffff; color: #2a1b12; border: 2px solid var(--ink);
   padding: 0.75rem 1rem; border-radius: var(--radius); margin: 0.5rem 0 1.5rem;
 }
 .badge { display: inline-block; padding: 0.15rem 0.75rem; border-radius: 999px; font-weight: 800; }
@@ -381,7 +382,7 @@ input:focus, textarea:focus, select:focus { border-color: var(--focus); }
   .btn { transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
   .btn:hover { filter: none; }
   .btn-primary:hover { background: var(--brand-hover); color: #ffffff; }
-  .btn-ink:hover { background: #000000; }
+  .btn-ink:hover { background: var(--brand-hover); }
   .btn-accent:hover { background: var(--ink); color: var(--cyan); }
   .btn-outline:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
   .hero .btn-outline:hover { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
