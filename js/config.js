@@ -46,8 +46,8 @@ window.SITE_CONFIG = {
   // Vendor directory filter buttons (in this order). A vendor whose
   // category isn't in this list shows up under "Other".
   categories: [
-    "Wood", "Candles", "Beauty & Soap", "Rocks & Gems", "Honey", "Jewelry",
-    "Home Decor", "Metal", "Clothing", "Hats", "Art", "Up-cycled & Vintage",
-    "Baked Goods & Treats", "Other"
+    "Art", "Jewelry & Gems", "Candles", "Bath & Body", "Home Decor",
+    "Wood & Engraving", "Clothing & Hats", "Sewing & Fiber", "Food & Treats",
+    "Plants & Flowers", "Up-cycled & Vintage", "Other"
   ]
 };
