@@ -444,3 +444,8 @@ input:focus, textarea:focus, select:focus { border-color: var(--focus); }
 .photo-slide figure { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--surface-2); isolation: isolate; }
 .photo-slide img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .photo-slide figcaption { padding: 0.6rem 0.9rem; font-weight: 600; background: var(--surface); }
+
+/* Featured makers on the home page: 3 across so 6 cards make 2 even rows */
+@media (min-width: 60rem) {
+  #featured-vendors { grid-template-columns: repeat(3, 1fr); }
+}
