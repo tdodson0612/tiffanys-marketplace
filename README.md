@@ -117,7 +117,13 @@ up with a different domain, search and replace `tiffanysmarketplace.com`.
 ## Motion and carousels
 
 - **Hero:** the headline, text, buttons and logo animate in on load (CSS keyframes in `css/styles.css`, "MOTION" section).
-- **Scroll reveals:** `js/reveal.js` fades and slides sections in as they scroll into view. To animate something new, add a line to `GROUPS` at the top of that file.
+- **Scroll reveals:** `js/reveal.js` fades and slides sections in as they scroll into view. To animate something new, add its selector to the `sel` list at the top of that file.
+- **Headline words:** the big headline on each page rises in word by word. In the HTML, the full sentence sits in a `visually-hidden` span (for screen readers) and a word-by-word copy sits next to it with `aria-hidden="true"`. If you change a headline, change both.
+- **Page transitions:** moving between Home and Vendors cross-fades (View Transitions, CSS only). Browsers without support load the page normally.
+- **Prefetching:** the `speculationrules` script in each page's head loads the other page when a visitor hovers a link (Chrome and Edge).
+- **Loading placeholders:** events and maker lists start with grey "skeleton" cards that hold the space until the data loads, so nothing jumps. If there's nothing to show, the friendly empty message appears instead.
+- **Press feedback:** buttons shrink slightly when pressed, and FAQ answers ease open with a turning +/x icon.
+- **WebP photos:** every `images/vendors/*.jpg` has a smaller `.webp` copy (about 30% lighter). When you add a vendor photo, make a WebP copy too: `cwebp -q 78 photo.jpg -o photo.webp` (or ask Claude). If the WebP is missing, the site falls back to the JPEG automatically.
 - **Carousels:** reviews and the photo gallery use Swiper 14.3.0 from jsDelivr (pinned version). Add photos in `data/photos.csv`; the gallery stays hidden until there's at least one photo. Add reviews by copying a `swiper-slide` block in `index.html` (real reviews only, word for word).
 - **Hover effects:** cards lift, photos zoom, buttons change color. Only on devices with a mouse or trackpad.
 - **Reduce motion:** visitors with "reduce motion" turned on (phone or computer setting) see everything instantly with no animation. Without JavaScript, everything shows normally too.

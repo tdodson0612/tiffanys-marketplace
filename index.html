@@ -26,6 +26,12 @@
   <!-- Swiper carousels (pinned version). Our styles load after, so they win. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.3.0/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Loads the other page in the background when a visitor hovers a link, so it opens instantly (Chrome/Edge; other browsers ignore it) -->
+  <script type="speculationrules">
+  { "prefetch": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }] }
+  </script>
+  <!-- Without JavaScript: hide the loading placeholders and show the fallback messages -->
+  <noscript><style>.skeleton{display:none}#events-empty,#featured-empty,#vendors-empty{display:block!important}</style></noscript>
 
   <!-- Google search: business details -->
   <script type="application/ld+json">
@@ -117,7 +123,7 @@
       <div class="container hero-content hero-grid">
         <div>
           <p class="eyebrow">Artisan market &amp; makerspace &middot; Central Point, Oregon</p>
-          <h1 id="hero-title">Handmade by Southern Oregon makers</h1>
+          <h1 id="hero-title" class="split"><span class="visually-hidden">Handmade by Southern Oregon makers</span><span aria-hidden="true"><span class="w" style="--i:0">Handmade</span> <span class="w" style="--i:1">by</span> <span class="w" style="--i:2">Southern</span> <span class="w" style="--i:3">Oregon</span> <span class="w" style="--i:4">makers</span></span></h1>
           <p class="lead">Nearly 80 local makers under one roof, plus food trucks, a local wine bar, live music Friday nights, and a dog-friendly patio on Front Street.</p>
 
           <p class="status-card">
@@ -131,7 +137,7 @@
             <a class="btn btn-outline" href="https://www.facebook.com/TiffanysMarketplace2026">Follow on Facebook</a>
           </div>
         </div>
-        <img class="hero-logo" src="images/logo.png" width="800" height="640"
+        <img class="hero-logo" src="images/logo.png" width="800" height="640" fetchpriority="high"
              alt="Tiffany's Marketplace logo: a rabbit in a top hat. Established 2026. Artisan market and makerspace.">
       </div>
     </section>
@@ -214,8 +220,12 @@
         <p class="section-intro">Live music every Friday 5&ndash;7 PM, plus special events all year long.</p>
 
 
-        <ul id="events-list" class="event-list" hidden></ul>
-        <div id="events-empty" class="empty">
+        <ul id="events-list" class="event-list" aria-busy="true">
+          <li class="event skeleton" aria-hidden="true"><span class="sk sk-date"></span><div><span class="sk sk-line sk-title"></span><span class="sk sk-line sk-short"></span><span class="sk sk-line"></span><span class="sk sk-btn"></span></div></li>
+          <li class="event skeleton" aria-hidden="true"><span class="sk sk-date"></span><div><span class="sk sk-line sk-title"></span><span class="sk sk-line sk-short"></span><span class="sk sk-line"></span><span class="sk sk-btn"></span></div></li>
+          <li class="event skeleton" aria-hidden="true"><span class="sk sk-date"></span><div><span class="sk sk-line sk-title"></span><span class="sk sk-line sk-short"></span><span class="sk sk-line"></span><span class="sk sk-btn"></span></div></li>
+        </ul>
+        <div id="events-empty" class="empty" hidden>
           <p>Follow us on Facebook for the next event.</p>
           <p><a class="btn btn-primary" href="https://www.facebook.com/TiffanysMarketplace2026">See us on Facebook</a></p>
         </div>
@@ -227,8 +237,15 @@
       <div class="container">
         <h2 id="makers-title">Meet some of our makers</h2>
         <p class="section-intro">Nearly 80 talented local artisans, all in one place, all year round.</p>
-        <ul id="featured-vendors" class="vendor-grid" hidden></ul>
-        <div id="featured-empty" class="empty">
+        <ul id="featured-vendors" class="vendor-grid" aria-busy="true">
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+        </ul>
+        <div id="featured-empty" class="empty" hidden>
           <p>Our maker profiles are coming soon. In the meantime, come by and meet them in person!</p>
         </div>
         <p class="section-cta"><a class="btn btn-primary" href="vendors.html">See all vendors</a></p>

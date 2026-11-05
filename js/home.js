@@ -93,7 +93,8 @@
 
   TM.load("events").then(function (rows) {
     var list = document.getElementById("events-list"), empty = document.getElementById("events-empty");
-    if (!rows || !list) return;
+    if (!list) return;
+    if (!rows) return TM.doneLoading(list, empty, false);
     var today = TM.now().dateKey;
     var upcoming = rows
       .filter(function (r) { return TM.isDateKey(r.date) && r.title && r.date >= today; })
@@ -102,7 +103,7 @@
         return a.date === b.date ? (ta == null ? -1 : ta) - (tb == null ? -1 : tb) : a.date < b.date ? -1 : 1;
       })
       .slice(0, 8);
-    if (!upcoming.length) return; // empty message stays visible
+    if (!upcoming.length) return TM.doneLoading(list, empty, false); // show the "follow us" message
 
     list.innerHTML = upcoming.map(function (ev) {
       var t = eventTimes(ev);
@@ -123,8 +124,7 @@
         '<a class="btn btn-outline btn-small" href="' + e(icsUrl(ev)) + '" download="' + e(file) + '">Apple / Outlook<span class="visually-hidden"> calendar: ' + e(ev.title) + "</span></a>" +
         "</div></div></li>";
     }).join("");
-    list.hidden = false;
-    if (empty) empty.hidden = true;
+    TM.doneLoading(list, empty, true);
     if (TM.reveal) TM.reveal();
   });
 
@@ -137,14 +137,14 @@
   /* ---------- Featured makers ---------- */
   TM.load("vendors").then(function (rows) {
     var grid = document.getElementById("featured-vendors"), empty = document.getElementById("featured-empty");
-    if (!rows || !grid) return;
+    if (!grid) return;
+    if (!rows) return TM.doneLoading(grid, empty, false);
     var vendors = TM.cleanVendors(rows);
     var featured = vendors.filter(function (v) { return TM.isYes(v.featured); });
     var show = (featured.length ? featured : vendors).slice(0, 8);
-    if (!show.length) return;
+    if (!show.length) return TM.doneLoading(grid, empty, false);
     grid.innerHTML = show.map(TM.vendorCard).join("");
-    grid.hidden = false;
-    if (empty) empty.hidden = true;
+    TM.doneLoading(grid, empty, true);
     if (TM.reveal) TM.reveal();
   });
 

@@ -50,6 +50,7 @@
       return [v.name, v.category, v.description].join(" ").toLowerCase().indexOf(q) > -1;
     });
     grid.innerHTML = shown.map(TM.vendorCard).join("");
+    grid.removeAttribute("aria-busy");
     if (TM.reveal) TM.reveal();
     var word = shown.length === 1 ? "maker" : "makers";
     countEl.textContent = shown.length
@@ -64,7 +65,7 @@
     vendors = TM.cleanVendors(rows).sort(function (a, b) { return a.name.localeCompare(b.name); });
     if (!vendors.length) {
       countEl.textContent = "";
-      emptyEl.hidden = false;
+      TM.doneLoading(grid, emptyEl, false);
       return;
     }
     emptyEl.hidden = true;

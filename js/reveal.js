@@ -19,16 +19,17 @@
   // This site's own blocks to animate (not the header or hero).
   // Home page: tiles, gallery, events, featured makers, reviews, sell-here form,
   // about, visit, FAQ. Vendors page: search/filters, vendor cards, info boxes.
+  // Grey loading placeholders (.skeleton) are left out; the real cards slide in.
   var sel = [
     '#find .tiles > li', '#gallery .carousel-wrap',
-    '#events-list > li',
-    '#featured-vendors > li',
+    '#events-list > li:not(.skeleton)',
+    '#featured-vendors > li:not(.skeleton)',
     '#reviews .carousel-wrap',
     '#become-a-vendor .form-grid',
     '#about .about > div', '#about .quote',
     '#visit .visit-grid > div', '#visit .map-frame',
     '.faq details',
-    '.directory-controls', '#vendor-grid > li',
+    '.directory-controls', '#vendor-grid > li:not(.skeleton)',
     '.container > .empty' // the "coming soon" and "Apply for a booth" boxes
   ].join(', ');
 

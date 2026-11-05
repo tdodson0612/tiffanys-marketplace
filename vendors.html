@@ -23,6 +23,12 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Loads the other page in the background when a visitor hovers a link, so it opens instantly (Chrome/Edge; other browsers ignore it) -->
+  <script type="speculationrules">
+  { "prefetch": [{ "where": { "href_matches": "/*" }, "eagerness": "moderate" }] }
+  </script>
+  <!-- Without JavaScript: hide the loading placeholders and show the fallback messages -->
+  <noscript><style>.skeleton{display:none}#events-empty,#featured-empty,#vendors-empty{display:block!important}</style></noscript>
 
   <script type="application/ld+json">
   {
@@ -88,7 +94,7 @@
   <main id="main">
     <section class="page-hero" aria-labelledby="page-title">
       <div class="container">
-        <h1 id="page-title">Our makers</h1>
+        <h1 id="page-title" class="split"><span class="visually-hidden">Our makers</span><span aria-hidden="true"><span class="w" style="--i:0">Our</span> <span class="w" style="--i:1">makers</span></span></h1>
         <p class="lead">Nearly 80 booths at Tiffany's Marketplace, each run by a local Rogue Valley maker. Find your favorites, then come see them in person.</p>
       </div>
     </section>
@@ -107,7 +113,14 @@
         </div>
 
         <p id="results-count" class="results-count" role="status" aria-live="polite"></p>
-        <ul id="vendor-grid" class="vendor-grid"></ul>
+        <ul id="vendor-grid" class="vendor-grid" aria-busy="true">
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+          <li class="vendor-card skeleton" aria-hidden="true"><span class="sk sk-photo"></span><div class="vendor-body"><span class="sk sk-line sk-short"></span><span class="sk sk-line sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-short"></span></div></li>
+        </ul>
 
         <div id="vendors-empty" class="empty" hidden>
           <p>Our maker directory is coming soon. Come by and meet everyone in person, or follow along on Facebook.</p>

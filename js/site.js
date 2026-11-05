@@ -224,15 +224,41 @@
     });
   };
 
+  /* If a .webp copy is missing, drop it so the browser falls back to the JPEG */
+  document.addEventListener("error", function (ev) {
+    var img = ev.target, pic = img && img.parentNode;
+    if (img.tagName !== "IMG" || !pic || pic.tagName !== "PICTURE") return;
+    var src = pic.querySelector("source");
+    if (src) src.remove(); // the browser then picks the <img> src
+  }, true);
+
+  /* ---------- Loading placeholders ----------
+     Lists start with grey placeholder cards. When the data arrives, either the
+     real cards have replaced them (filled = true) or there's nothing to show,
+     so the list hides and the friendly "empty" message appears. */
+  TM.doneLoading = function (list, empty, filled) {
+    list.removeAttribute("aria-busy");
+    if (filled) { list.hidden = false; if (empty) empty.hidden = true; return; }
+    list.innerHTML = "";
+    list.hidden = true;
+    if (empty) empty.hidden = false;
+  };
+
   /* ---------- Vendor card (used on both pages) ---------- */
   TM.vendorCard = function (v) {
     var e = TM.escapeHTML;
     var name = v.name || "";
     var photo = TM.safeUrl(v.photo, true);
     var initial = (name.replace(/[^A-Za-z0-9]/g, "").charAt(0) || "★").toUpperCase();
-    var img = photo
+    // Our own photos (images/vendors/*.jpg) also have a smaller .webp copy.
+    // Browsers that can use it do; if it's missing, the JPEG loads instead (see below).
+    var webp = /^images\/vendors\/[^?#]+\.jpe?g$/i.test(photo) ? photo.replace(/\.jpe?g$/i, ".webp") : "";
+    var tag = photo
       ? '<img class="vendor-photo" src="' + e(photo) + '" alt="' + e(v.photo_alt || "Handmade work by " + name) +
         '" loading="lazy" decoding="async" width="640" height="480">'
+      : "";
+    var img = photo
+      ? (webp ? '<picture><source srcset="' + e(webp) + '" type="image/webp">' + tag + "</picture>" : tag)
       : '<div class="vendor-photo-placeholder" aria-hidden="true">' + e(initial) + "</div>";
     var links = [["facebook", "Facebook"], ["instagram", "Instagram"], ["etsy", "Etsy"], ["website", "Website"]]
       .map(function (pair) {
