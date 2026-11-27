@@ -16,7 +16,7 @@
    ========================================================= */
 
 window.SITE_CONFIG = {
-  dataSource: "local", // "local" or "sheet"
+  dataSource: "sheet", // "local" or "sheet"
 
   local: {
     hours: "data/hours.csv",
@@ -30,12 +30,12 @@ window.SITE_CONFIG = {
   // Option B: paste the "Publish to web" CSV link for each tab here.
   // They look like: https://docs.google.com/spreadsheets/d/e/LONG-ID/pub?gid=123&single=true&output=csv
   sheet: {
-    hours: "",
-    specialHours: "",
-    events: "",
-    vendors: "",
-    settings: "",
-    photos: ""
+    hours: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQTS7D8PKN-tF3GCNdIXAReqfdW5PLCxl2TcGxlyXD77bNQQhk6fHvavoCD9MgcmEdRZ8wXmDrzALdB/pub?gid=1201997064&single=true&output=csv",
+    specialHours: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQTS7D8PKN-tF3GCNdIXAReqfdW5PLCxl2TcGxlyXD77bNQQhk6fHvavoCD9MgcmEdRZ8wXmDrzALdB/pub?gid=798155785&single=true&output=csv",
+    events: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQTS7D8PKN-tF3GCNdIXAReqfdW5PLCxl2TcGxlyXD77bNQQhk6fHvavoCD9MgcmEdRZ8wXmDrzALdB/pub?gid=1731212488&single=true&output=csv",
+    vendors: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQTS7D8PKN-tF3GCNdIXAReqfdW5PLCxl2TcGxlyXD77bNQQhk6fHvavoCD9MgcmEdRZ8wXmDrzALdB/pub?gid=1841361770&single=true&output=csv",
+    settings: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQTS7D8PKN-tF3GCNdIXAReqfdW5PLCxl2TcGxlyXD77bNQQhk6fHvavoCD9MgcmEdRZ8wXmDrzALdB/pub?gid=677171486&single=true&output=csv",
+    photos: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQTS7D8PKN-tF3GCNdIXAReqfdW5PLCxl2TcGxlyXD77bNQQhk6fHvavoCD9MgcmEdRZ8wXmDrzALdB/pub?gid=106756564&single=true&output=csv"
   },
 
   timeZone: "America/Los_Angeles",
